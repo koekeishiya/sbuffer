@@ -14,7 +14,7 @@ struct buf_hdr
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define OFFSETOF(t, f) (size_t)((char *)&(((t *)0)->f) - (char *)0)
 
-#define buf__hdr(b) ((struct buf_hdr *)((char *)buf - OFFSETOF(struct buf_hdr, buf)))
+#define buf__hdr(b) ((struct buf_hdr *)((char *)b - OFFSETOF(struct buf_hdr, buf)))
 #define buf__should_grow(b, n) (buf_len(b) + (n) > buf_cap(b))
 #define buf__fit(b, n) (buf__should_grow(b, n) ? ((b) = buf__grow_f(b, buf_len(b) + (n), sizeof(*(b)))) : 0)
 
